@@ -1,0 +1,52 @@
+import {HorizontalBox, VerticalBox, Button, VerticalBox} from "std-widgets.slint";
+
+component Circle inherits Rectangle {
+    width: 30px;
+    height: 30px;
+    border-radius: root.width / 2;
+    animate x {
+         duration: 450ms; easing: ease;
+    }
+    animate y {
+        duration: 450ms; easing: ease;
+    }
+    animate background {
+         duration: 450ms;
+    }
+}
+
+export component AppWindow inherits Window {
+    title: "Finances";
+    states [
+        left-aligned when b1.pressed: {
+            circle1.x: 0px; circle1.y: 70px; circle1.background: tomato; 
+            circle2.x: 0px; circle2.y: 00px; circle2.background: lightgreen; 
+        }
+        right-aligned when b2.pressed: {
+            circle1.x: 170px; circle1.y: 70px; circle1.background: blue;
+            circle2.x: 170px; circle2.y: 0px; circle2.background: yellow;
+        }
+    ]
+
+    VerticalBox {
+         HorizontalBox {
+            max-height: self.min-height;
+
+            b1 := Button {
+                text: "left";
+            }
+            b2 := Button {
+                text: "right";
+            }
+         }
+
+         Rectangle {
+            background: root.background.darker(20%);
+            width: 200px;
+            height: 100px;
+
+            circle1 := Circle{y: 0; background: greenyellow; x: 85px;}
+            circle2 := Circle{y: 40px; background: aquamarine; x: 85px;}
+         }
+    }
+}
