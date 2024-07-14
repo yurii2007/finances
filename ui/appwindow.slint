@@ -1,5 +1,7 @@
-import {HorizontalBox, VerticalBox, Button, VerticalBox, GridBox} from "std-widgets.slint";
+import {HorizontalBox, VerticalBox, VerticalBox, GridBox} from "std-widgets.slint";
 import {Palette} from "./theme/palette.slint";
+import {Button, ButtonVariant} from "./components/button.slint";
+import "./fonts/Poppins/Poppins-Regular.ttf";
 
 component Circle inherits Rectangle {
     width: 30px;
@@ -36,15 +38,18 @@ export component AppWindow inherits Window {
             circle2.background: yellow;
         }
     ]
+    default-font-family: "Poppins";
     VerticalBox {
         HorizontalBox {
             max-height: self.min-height;
             b1 := Button {
                 text: "left";
+                variant: ButtonVariant.Secondary;
             }
 
             b2 := Button {
                 text: "right";
+                variant: ButtonVariant.Primary;
             }
         }
 
@@ -62,55 +67,6 @@ export component AppWindow inherits Window {
                 y: 40px;
                 background: aquamarine;
                 x: 85px;
-            }
-        }
-
-        GridBox {
-            spacing: 20px;
-            Rectangle {
-                width: 50px;
-                height: 50px;
-                background: Palette.black-primary;
-
-                Text {
-                    text: "lorem";
-                    color: Palette.text-primary;
-                }
-            }
-
-            Rectangle {
-                width: 50px;
-                height: 50px;
-                background: Palette.purple-primary;
-
-                Text {
-                    text: "lorem";
-                    color: Palette.text-secondary;
-                }
-            }
-
-            Rectangle {
-                width: 50px;
-                height: 50px;
-                background: Palette.idk-1;
-            }
-
-            Rectangle {
-                width: 50px;
-                height: 50px;
-                background: Palette.idk-2;
-            }
-
-            Rectangle {
-                width: 50px;
-                height: 50px;
-                background: Palette.idk-3;
-            }
-
-            Rectangle {
-                width: 50px;
-                height: 50px;
-                background: Palette.idk-4;
             }
         }
     }
