@@ -1,0 +1,25 @@
+import {Button} from "std-widgets.slint";
+import { Palette } from "../theme/palette.slint";
+
+export component Button inherits Rectangle {
+    in-out property text <=> txt.text;
+    callback clicked <=> touch.clicked;
+    out property pressed <=> touch.pressed;
+    property hovered <=> touch.has-hover;
+
+    border-radius: 10px;
+    background: hovered ? Palette.black-primary : Palette.purple-primary;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    padding-left: 16px;
+    padding-right: 16px;
+    animate background { duration: 250ms; }
+
+    txt := Text {
+        color: black;
+    }
+
+    touch := TouchArea {
+        padding: 16px;
+    }
+}
