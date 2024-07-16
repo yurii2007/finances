@@ -1,0 +1,51 @@
+import {Button} from "std-widgets.slint";
+import { Palette } from "../theme/palette.slint";
+
+export enum ButtonVariant {
+    Primary,
+    Secondary,
+}
+
+export component Button inherits Rectangle {
+    in-out property text <=> txt.text;
+    callback clicked <=> touch.clicked;
+    out property pressed <=> touch.pressed;
+    property hovered <=> touch.has-hover;
+    in-out property <ButtonVariant> variant;
+    property <bool> disabled: false;
+    public pure function get_button_bg(variant: ButtonVariant, hovered: bool) -> brush {
+        if variant == ButtonVariant.Primary {
+            return hovered ? Palette.black-primary : Palette.purple-primary;
+        } else if variant == ButtonVariant.Secondary {
+            return hovered ? Palette.text-secondary : Palette.black-primary;
+        } else {
+            return Palette.blue;
+        }
+        ;
+    }
+    public pure function get_text_color(variant: ButtonVariant, hovered: bool) -> brush {
+        if variant == ButtonVariant.Primary {
+            return hovered ? Palette.text-secondary : Palette.text-primary;
+        } else if variant == ButtonVariant.Secondary {
+            return hovered ? Palette.text-primary : Palette.text-secondary;
+        } else {
+            return Palette.gray-primary;
+        }
+        ;
+    }
+    border-radius: 10px;
+    background: get_button_bg(variant, hovered);
+    width: 100px;
+    height: 40px;
+    animate background { duration: 250ms; }
+
+    txt := Text {
+        color: get_text_color(variant, hovered);
+        font-size: 20px;
+        animate color { duration: 250ms; }
+    }
+
+    touch := TouchArea {
+        padding: 16px;
+    }
+}
