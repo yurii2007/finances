@@ -5,6 +5,7 @@
 ```
 Create a data structure diagram (only basic functions are required for the first step)
 ```
+![checkmark](./assets/checkmark.svg)
 
 ### Second step
 
