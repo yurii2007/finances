@@ -5,6 +5,7 @@ edition = "2021"
 build = "build.rs"
 
 [dependencies]
+postgres = "0.19.7"
 slint = { version = "1.6" }
 
 
